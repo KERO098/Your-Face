@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إرسال رسالة</title>
+</head>
+<body>
+    <input type="text" id="message" placeholder="كلمة سر">
+    <input type="text" id="message" placeholder="رقم">
+    <button onclick="sendMessage()">إرسال</button>
+
+    <script>
+        function sendMessage() {
+            const message = document.getElementById("message").value;
+            fetch("https://your-receiver-site.com/api/messages", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message })
+            }).then(res => alert("تم الإرسال!"));
+        }
+    </script>
+</body>
+</html>
